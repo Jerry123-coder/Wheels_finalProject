@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Wheels</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block style %}
+        <link href="{% static 'omain.css' %}" rel="stylesheet">
+        {% endblock style %}
+    </head>
+    <body>
+        {% block navBar %}
+        <div class="navBar">
+                <a href="">{{logs.username}}</a>
+                <a href="{% url 'owallet_page' %}"><img src="/media/bitMain.png" class="wLogo"></a>
+                <a href="{% url 'logout_page' %}">Logout</a>
+        </div>
+        {% endblock navBar %}
+        {% block content %}
+        <div class="itemBox">
+            {% for container in containers %}
+            <div class="prodBox">
+                <div><img src="{{container.image.url}}" alt=""></div>
+                <div class="detailBox">
+                <div class="name"><a href="{% url 'conInfo_page' container.id %}">{{container.name}}</a></div>
+                <div class="des">{{container.description}}</div>
+                </div>
+            </div>
+            {% endfor %}
+            <div>
+                <a href="{% url 'createCon_page' %}"><button class='addB'>Add Container</button></a>
+            </div>
+        </div>
+        {% endblock content %}    
+    </body>
+</html>

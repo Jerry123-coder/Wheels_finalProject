@@ -1,0 +1,10 @@
+{% extends 'ohome.html' %}
+
+
+{% block content %}
+<form method="post" enctype="multipart/form-data"  class='adForm'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Update</button>
+</form>
+{% endblock content %}

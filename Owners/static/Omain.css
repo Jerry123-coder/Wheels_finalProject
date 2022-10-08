@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-family: 'Baloo 2', cursive;
+    text-decoration: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    background-color: whitesmoke;
+}
+
+.navBar{
+    position: fixed;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: black;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    font-size: 1.1rem;
+}
+.navBar a{
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-right: 60px;
+    margin-left: 60px;
+}
+
+.page{
+    display: flex;
+    width: 100%;
+}
+.leftPage, .rightPage{
+    border: 1px solid black;
+    width: 50%;
+}
+.rightPage a{
+    color: #4facf1;
+    background: black;
+    padding: 5px;
+    font-size: 1.1rem;
+}
+.helptext{
+    display: none;
+}
+.errorlist{
+    background-color:#01acff;
+    list-style: none;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    width: 250px;
+}
+.errorlist li{
+    text-align: center;
+}
+.formBox{
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    background-color: #d9376f;
+    padding: 5px;
+    color: white;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+form{
+    font-size: 1.1rem;
+}
+.logForm{
+    color: white;
+    display: flex;
+    background-color: black;
+    padding: 10px;
+    border-radius: 8px;
+    justify-content: center;
+    flex-direction: column;
+}
+#id_username,#id_email,#id_password1,#id_password2,#id_password,#id_phone_number{
+    height: 30px;
+    width: 250px;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    padding: 5px;
+}
+.username,.email,.password1,.password2,.location{
+    font-size: 1.1rem;
+    margin: 5px;
+    height: 30px;
+    width: 250px;
+    border-radius: 4px;
+    padding: 5px;   
+}
+.bHolder{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.bHolder button{
+    cursor:grabbing;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 3px;
+    border-radius: 5px;
+    width: 90px;
+    height: 30px;
+    transition: 0.2s ease;
+}
+.bHolder button:hover{
+    letter-spacing: 0.6px;
+    background-color: transparent;
+    color: white;
+    border: 3px dashed white;
+}
+.formBox .redBox{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.formBox .redBox a{
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    background-color: #01acff;
+    text-align: center;
+    padding: 3px;
+    text-decoration: none;
+    color: whitesmoke;
+    transition: 0.2s ease;
+}
+.formBox .redBox a:hover{
+    background: transparent;
+    color: #01acff;
+    border: 3px dashed #01acff;
+}
+
+
+#header{
+    color: black;
+}
+.cH{
+    margin: 5px;
+}
+.codeBox .con{
+    border-radius: 5px;
+    word-wrap: break-word;
+    padding: 8px;
+    border: 2px solid white;
+    transition: 0.3s ease;
+}
+.codeBox .con:hover{
+    background-color: white;
+    color: #00a1d3;
+    cursor: copy;
+}
+.itemHolder{
+    display: flex;
+}
+.conBox{
+    margin: 30px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background: white;
+    padding: 20px;
+}
+
+.detailBox{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.addCon{
+    background:#d96281;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    color: white;
+    padding:3px;
+    font-weight:600;
+    letter-spacing:1px
+}
+.itemBox{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.prodBox{
+    margin: 30px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background: white;
+    padding: 20px;
+}
+.prodBoxII{
+    margin: 30px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.prodBoxII div{
+    margin: 3px;
+}
+.navBox a{
+    color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background:#d96281;
+    padding: 5px;
+}
+.navBox a:hover{
+    background-color: white;
+    color: #d9376f;
+}
+.pbd{
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background:#4facf1;
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+.addB{
+    background-color: #d96281;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    color: white;
+    padding: 3px;
+}
+
+.wLogo{
+    height: 40px;
+    width: 40px;
+}
+
+
+.adForm{
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background: white;
+    padding: 20px;
+}
+.adForm input, textarea{
+    border: 1px solid darkgray;
+}

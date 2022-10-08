@@ -1,0 +1,113 @@
+{% extends 'ohome.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'wallet.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block navBar %}
+    <div class="navBar">
+            <a href="">{{logs.username}}</a>
+            <a><span>{{balance}}</span></a>
+            <a href="{% url 'logout_page' %}">Logout</a>
+    </div>
+{% endblock navBar %}
+
+{% block content %}
+    <div class="codeBox">
+        <form method="post">
+            {% csrf_token %}
+            <button class="gen">generate key</button>
+        </form>
+        <div class='cH'>
+            <p id='header' class="sp">Private_key</p>
+            <div class='con' id='pkTab'>{{wallet.private_key}}</div>
+        </div>
+        <div class='cH'>
+            <p id='header'>Public_key</p>
+            <div class='con'>{{wallet.public_key}}</div>
+        </div>
+        <div class='cH'>
+            <p id='header'>Wallet Address</p>
+            <div class='con'>{{wallet.address}}</div>
+        </div>
+        <div class="bH">
+            <button class="hide">X</button>
+        </div>
+        <button class="show">+</button>
+    </div>
+    <table>
+        <tr>
+            <th>Customer</th>
+            <th>Container</th>
+            <th>Pickup</th>
+            <th>Drop-off</th>
+            <th>Distance [km]</th>
+            <th>Delivery Type</th>
+            <th>Delivery Fee [ghc]</th>
+            <th>Delivery Duration</th>
+            <th>Amount</th>
+            <th>Time Ordered</th>
+            <th>Trans. Type</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{transaction.name}}</td>
+            <td>{{transaction.container}}</td>
+            <td>{{transaction.pickup}}</td>
+            <td>{{transaction.dropoff}}</td>
+            <td>{{transaction.trip_distance}} km</td>
+            <td>{{transaction.delivery_type}}</td>
+            <td>{{transaction.delivery_fee_BTC}} BTC</td>
+            <td>{{transaction.delivery_duration}}</td>
+            <td class='amnt'>{{transaction.amount_BTC}} BTC</td>
+            <td>{{transaction.timestamp}}</td>
+            <td class="lb">recieve <img src="/media/8367747.png" class="sLogo"></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td class="aTab" colspan="2">
+            </td>
+        </tr>
+    </table>
+    <script>
+        const gen = document.querySelector('.gen')
+        const pkTab = document.getElementById('pkTab').innerText
+        const codeBox = document.querySelector('.codeBox')
+        const hide = document.querySelector('.hide')
+        const show = document.querySelector('.show')
+
+        function viewHandle(){
+            if(pkTab.length > 5){
+                console.log('be')
+                codeBox.classList.remove('hide')
+            }else{
+                console.log('a')
+                codeBox.classList.add('hide')
+                }
+            }
+        viewHandle()
+        hide.onclick = ()=>{
+            codeBox.classList.remove('hide')
+        }
+        show.onclick = ()=>{
+            codeBox.classList.add('hide')
+        }
+
+        if(pkTab.length > 5){
+            gen.style.display = 'none'
+        }
+
+        const amnt = document.querySelectorAll('.amnt')
+        const aTab = document.querySelector('.aTab')
+
+        var totalAmnt = 0
+        for (let i = 0; i < amnt.length; i++) {
+            totalAmnt = totalAmnt + parseFloat(amnt[i].innerText)
+            //totalAmnt = (1.554654646).toFixed(3)
+            
+        }
+        totalAmnt = totalAmnt.toFixed(3)
+        aTab.innerText = 'Total' + ' ' + '=' + ' ' + 'ghc' + ' ' + totalAmnt
+    </script>
+{% endblock content %}

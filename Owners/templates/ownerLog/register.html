@@ -1,0 +1,32 @@
+{% extends 'Log/register.html' %}
+
+{% block navBar %}
+    <div class="navBar">
+        <a href="{% url 'wheels_page' %}">Home</a>
+        <a href="{% url 'ownerLogin_page' %}">Login</a>
+    </div>
+{% endblock navBar %}
+
+{% block content %}
+    <div class="formBox">
+        {% if messages %}
+            {% for message in messages %}    
+            <div class="header"><p>{{message}}</p></div>
+            {% endfor %}
+        {% else %}
+        <div class="header"><p>Owner Account</p></div>
+        {% endif %}
+        <form method="post" class="logForm">
+            {% csrf_token %}
+            <input type="text" class="username" name="username" placeholder="Username" required>
+            <input type="email" class="email" name="email" placeholder="E-mail" required>
+            <input type="password" class="password1" name="password1" placeholder="Enter Password" required>
+            <input type="password" class="password2" name="password2" placeholder="Confirm Password" required>
+            <div class="bHolder"><button class="subTab" type="submit">Register</button></div>
+        </form>
+         <div class="redBox">
+            <a href="{% url 'ownerLogin_page' %}">Already have an account ?</a>
+            <a href="{% url 'register_page' %}">Register As Customer</a>
+        </div>
+    </div>
+{% endblock content %}

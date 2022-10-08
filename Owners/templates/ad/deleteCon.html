@@ -1,0 +1,20 @@
+{% extends 'ohome.html' %}
+
+
+{% block content %}   
+
+    <div class="itemBox">
+        <img src="{{object.image.url}}">
+        {{object.name}}
+        {{object.description}}
+        {{object.price}}
+    </div>
+    <form method="post"  class='adForm'>
+        {% csrf_token %}
+        <div class="navBox">
+            Are you sure?
+            <button type="submit">Yes</button>
+            <a href="{% url 'conInfo_page' container.id%}"><button>Cancel</button></a>
+        </div>
+    </form>
+{% endblock content %}
