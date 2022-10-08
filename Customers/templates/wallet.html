@@ -1,0 +1,248 @@
+{% extends 'wheels.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'wallet.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block navBar %}
+    <div class="navBar">
+        <a href="{% url 'wheels_page' %}" class="user">{{user.username}}</a>
+        <a><span></span><span>{{balance}}</span></a>
+        <a href="{% url 'deposit_page' %}">Deposit</a>
+        <a href="{% url 'logout_page' %}">Logout</a>
+    </div>
+{% endblock navBar %}
+
+{% block content %}
+    <div class="codeBox">
+        <form method="post">
+            {% csrf_token %}
+            <div class="gB">
+                <button class="gen">generate key</button>
+            </div>
+        </form>
+        <div class='cH'>
+            <p id='header'>Private_key</p>
+            <div class='con' id='pkTab'>{{wallet.private_key}}</div>
+        </div>
+        <div class='cH'>
+            <p id='header'>Public_key</p>
+            <div class='con'>{{wallet.public_key}}</div>
+        </div>
+        <div class='cH'>
+            <p id='header'>Wallet Address</p>
+            <div class='con'>{{wallet.address}}</div>
+        </div>
+        <div class="bH">
+            <button class="hide">X</button>
+        </div>
+        <button class="show">+</button>
+    </div>
+
+    {% if transactions %}
+    <div class="dataBox">
+        <table>
+            <tr>
+                <th>Container</th>
+                <th>Order Trip</th>
+                <th>Delivery Type</th>
+                <th>Amount BTC</th>
+                <th>Time Ordered</th>
+                <th>Trans Type</th>
+            </tr>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{transaction.container}}</td>
+                <td><span>{{transaction.pickup}} --> {{transaction.dropoff}}</span></td>
+                <td>{{transaction.delivery_type}}</td>
+                <td class='amnt'>{{transaction.amount_BTC}}</td>
+                <td>{{transaction.timestamp}}</td>
+                <td class="lb">sent <img src="/media/right-arrow.png" class="sLogo"></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td class="aTab" colspan="2">
+                </td>
+            </tr>
+        </table>
+        <div class="miniBox">
+            <div>
+                <a href="{% url 'wallet_page' %}">Summary</a>
+                <a href="{% url 'driverLog_page' %}">Driver Log</a>
+                <a href="{% url 'agentLog_page' %}">Agent Log</a>
+                <a href="{% url 'timeLog_page' %}">Time Log</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="message"></div>
+        <a class="orderLink"> Make your First Order</a>
+    {% endif %}
+    <div class="modalBox">
+        <section>
+            <span class="err1">Pin cannot be empty</span>
+            <span class="err2">Pin must be 4 digits</span>
+        </section>
+        <div>
+           <span>Create 4 digit Pin</span> 
+        </div>
+        <div>
+            <input type="text" maxlength="1" class="pin1">  
+            <input type="text" maxlength="1" class="pin2">  
+            <input type="text" maxlength="1" class="pin3">  
+            <input type="text" maxlength="1" class="pin4">  
+        </div>
+        <div class="b">
+            <button class='confirm'>Confirm</button> 
+         </div>
+    </div>
+    
+{% endblock content %}
+
+{% block script %}
+<script>
+    function getToken(name){
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== ''){
+            var cookies = document.cookie.split(';');
+            for(var i = 0; i < cookies.length; i++){
+                var cookie = cookies[i].trim();
+                if ((cookie.substring(0, name.length + 1)) === (name + '=')){
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue
+    }
+    var csrftoken = getToken('csrftoken');
+   
+const pin1 = document.querySelector('.pin1')
+const pin2 = document.querySelector('.pin2')
+const pin3 = document.querySelector('.pin3')
+const pin4 = document.querySelector('.pin4')
+const modal = document.querySelector('.modalBox')
+const mForm = document.querySelector('.confirm')
+const err1 = document.querySelector('.err1')
+const err2 = document.querySelector('.err2')
+
+const gen = document.querySelector('.gen')
+const pkTab = document.getElementById('pkTab').innerText
+const codeBox = document.querySelector('.codeBox')
+const hide = document.querySelector('.hide')
+const show = document.querySelector('.show')
+const orderLink = document.querySelector('.orderLink')
+const message = document.querySelector('.message')
+
+if(orderLink){
+    orderLink.onclick = ()=> {
+        if(pkTab.length > 5){
+            orderLink.href = "{% url 'wheels_page' %}"
+        }else{
+            const mess = document.createElement('span')
+            mess.innerText = "Generate your wallet keys"
+            mess.classList.add('mess')
+            message.appendChild(mess)
+        }
+    }
+}
+
+const pins = [pin1,pin2,pin3,pin4]
+var code
+for (let i = 0; i < pins.length; i++) {
+    pins[i].oninput = ()=>{
+        pins[i].value =  pins[i].value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+        if(i < 3){
+            pins[i+1].focus()
+        }
+        code = pins[0].value.toString() + pins[1].value.toString() + pins[2].value.toString() + pins[3].value.toString()
+        localStorage.setItem('pinTemp', code)
+        console.log(code)
+    }
+}
+mForm.onclick = ()=>{
+    var pin = localStorage.getItem('pinTemp')
+    if(pin){
+        if(pin.length > 3){
+            createPin(pin)
+            err1.style.display = 'none'
+            err2.style.display = 'none'
+        }
+        else{
+            err1.style.display = 'none'
+            err2.style.display = 'flex'
+        }
+    }else{
+        err1.style.display = 'flex'
+        err2.style.display = 'none'
+    }
+ }
+
+if('{{wallet.pin_code}}' === 'null'){
+    modal.style.display = 'flex'
+}else{
+    modal.style.display = 'none'
+}
+
+function createPin(pin){
+    var url = '/createPin/'
+    console.log(pin)
+
+    fetch(url,
+        {
+        method : 'POST',
+        headers: {
+            'Content-Type' : 'application/json',
+            'X-CSRFToken' : csrftoken
+        },
+        body : JSON.stringify({'pin' : pin})
+    })
+    .then((response) =>{
+        return response.json()
+    })
+    .then((data) =>{
+        console.log('data', data)
+    })
+    localStorage.clear('pinTemp')
+    for (var i = 0; i < pins.length; i++) {
+        pins[i].value = ''
+    }
+    modal.style.display = 'none'
+}
+
+function viewHandle(){
+    if(pkTab.length > 5){
+        codeBox.classList.remove('hide')
+    }else{
+        codeBox.classList.add('hide')
+        }
+    }
+viewHandle()
+
+hide.onclick = ()=>{
+    codeBox.classList.remove('hide')
+}
+show.onclick = ()=>{
+    codeBox.classList.add('hide')
+}
+
+if(pkTab.length > 5){
+    gen.style.display = 'none'
+}
+
+const amnt = document.querySelectorAll('.amnt')
+const aTab = document.querySelector('.aTab')
+
+var totalAmnt = 0
+for (let i = 0; i < amnt.length; i++) {
+    totalAmnt = totalAmnt + parseFloat(amnt[i].innerText)
+    //totalAmnt = (1.554654646).toFixed(3)
+    
+}
+totalAmnt = totalAmnt.toFixed(3)
+aTab.innerText = 'Total' + ' ' +' ' + '=' + ' ' + totalAmnt + ' ' + 'BTC'
+    
+</script>
+
+{% endblock script %}

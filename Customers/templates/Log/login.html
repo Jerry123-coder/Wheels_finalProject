@@ -1,0 +1,23 @@
+{% extends 'Log/register.html' %}
+
+{% block navBar %}
+    <div class="navBar">
+        <a href="{% url 'home_page' %}">Home</a>
+        <a href="{% url 'register_page' %}">Register</a>
+    </div>
+{% endblock navBar %}
+
+{% block content %}
+    <div class="formBox">
+        <div class="header"><p>Customer Account</p></div>
+        <form class="logForm" method="post">
+            {% csrf_token %}
+            {{form}}
+            <div class="bHolder"><button type="submit">Login</button></div>
+        </form>
+        <div class="redBox">
+            <a href="{% url 'register_page' %}">Create new account ?</a>
+            <a href="{% url 'ownerLogin_page' %}">Login As Owner</a>
+        </div>
+    </div>
+{% endblock content %}

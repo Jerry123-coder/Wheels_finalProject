@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block style %}
+        <link href="{% static 'homeII.css' %}" rel="stylesheet">
+        {% endblock style %}
+    </head>
+    <body>
+        {% block navBar %}
+        <div class="navBar">
+            {% if user.is_authenticated %}
+            <a href="{% url 'wheels_page' %}" class="user">{{user.username}}</a>
+            <a href="{% url 'wallet_page' %}"><img src="/media/bitMain.png" class="wLogo"></a>
+            <a href="{% url 'logout_page' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login_page' %}">Login</a>
+            <a href="{% url 'register_page' %}">Register</a>
+            {% endif %}
+        </div>
+        <div class="errorBox">
+            {% if messages %}
+                {% for message in messages %}
+                <div><span class="err">{{message}}</span></div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% if container %}
+        <div class="conBox">
+            <div class="prodBoxII">
+                <section>
+                    <div class="pbdII">{{container.name}}</div>
+                    <div><img src="{{container.image.url}}"></div>
+                </section>
+                <div>
+                    <div class="pbd">{{container.price_BTC}} BTC</div>
+                    <div class="pbd">{{price_ghs}}</div>
+                </div>
+            </div>
+            <div class="prodBoxII">
+                <section>
+                    <div class="pbdII">{{truck.name}}</div>
+                    <div class="tLogo"><img src="{{truck.image.url}}"></div>
+                </section>
+                <div>
+                    <div class="pbd">{{weight}}</div>
+                </div>
+            </div>
+            <div>
+                <a href="{% url 'order_page' %}" class="cO">Confirm Package</a>
+            </div>
+        </div>
+        {% endif %}
+        {% endblock navBar %}
+        {% block content %}
+        <div class="itemHolder">
+            <div class="h"><span>Enter Package Weight</span></div>
+            <form class="eNum">
+                <div class="nForm">
+                    <section>
+                        <div class="nav">
+                            <span class="add">+</span>
+                            <span class="rem">-</span>
+                        </div>
+                        <div><input type="number" class="wIn" min="1" max="10000" step="0.01"></div>
+                    </section>
+                    <section>
+                        <select class="wSelect">
+                            <option value="kg">kg</option>
+                            <option value="lb">lb</option>
+                        </select>
+                    </section>          
+                </div>
+            </form>
+        </div>
+        {% endblock content %}
+
+        {% block script %}
+        <script>
+            function getToken(name){
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== ''){
+                    var cookies = document.cookie.split(';');
+                    for(var i = 0; i < cookies.length; i++){
+                        var cookie = cookies[i].trim();
+                        if ((cookie.substring(0, name.length + 1)) === (name + '=')){
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue
+            }
+            var csrftoken = getToken('csrftoken');
+            
+            const numV = document.querySelector('.wIn')
+            const choice = document.querySelector('.wSelect')
+            const enter = document.querySelector('.eNum')
+            const box = document.querySelector('.name')
+            
+            choice.onchange = ()=>{
+                if(choice.value === 'lb'){
+                    console.log(typeof(numV.value))
+                    numV.value = (numV.value * 2.20).toFixed(1)
+                }else if(choice.value === 'kg'){
+                    numV.value = (numV.value / 2.20).toFixed(1)
+                }
+            }
+            
+            function userIn(){
+                enter.onsubmit = ()=>{
+                    //event.preventDefault()
+                    var num = parseFloat(numV.value)
+                    if(num>0 && num<=2500){
+                        var truck = parseInt(1)
+                        var container = parseInt(2500)
+                    }else if(num>2500 && num<=5000){
+                        var truck = parseInt(2)
+                        var container = parseInt(5000)
+                    }else if(num>5000 && num<=7500){
+                        var truck = parseInt(3)
+                        var container = parseInt(7500)
+                    }else if(num>7500 && num<=10000){
+                        var truck = parseInt(4)
+                        var container = parseInt(10000)
+                    }else{
+                        var container = parseInt(0)
+                    }
+                    var user = '{{request.user}}'
+                        if(user === 'AnonymousUser'){
+                            //console.log('not user')
+                        }else{
+                            //console.log(container)
+                            updateUserOrder(container,num,truck)
+                        }
+                        //window.location.reload()    
+                }
+            }
+            userIn()
+            
+            function updateUserOrder(container,num,truck){
+                //console.log('container:', container)
+                var url = '/addCon/'
+            
+                fetch(url,
+                    {
+                    method : 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json',
+                        'X-CSRFToken' : csrftoken
+                    },
+                    body : JSON.stringify({'container' : container, 'weight' : num, 'truck' : truck})
+                })
+                .then((response) =>{
+                    return response.json()
+                })
+                .then((data) =>{
+                    console.log('data', data)
+                })
+            }
+        </script>
+        {% endblock script %}
+    </body>
+</html>

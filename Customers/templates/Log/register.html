@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'form.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        {% block navBar %}
+         <div class="navBar">
+            <a href="{% url 'home_page' %}">Home</a>
+            <a href="{% url 'login_page' %}">Login</a>
+         </div>
+        {% endblock navBar %}
+        {% block content %}
+            <div class="formBox">
+                <div class="header"><p>Customer Account</p></div>
+                <form class="logForm" method="post">
+                    {% csrf_token %}
+                    {{form}}
+                    <div class="bHolder"><button type="submit">Register</button></div>
+                </form>
+                <div class="redBox">
+                    <a href="{% url 'login_page' %}">Already have an account ?</a>
+                    <a href="{% url 'ownerRegister_page' %}">Register As Owner</a>
+                </div>
+            </div>
+        {% endblock content %}
+    </body>
+</html>

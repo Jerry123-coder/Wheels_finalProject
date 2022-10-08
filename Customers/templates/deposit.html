@@ -1,0 +1,128 @@
+{% extends 'wheels.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'wallet.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block navBar %}
+    <div class="navBar">
+        <a href="{% url 'wheels_page' %}" class="user">{{user.username}}</a>
+        <a><span></span><span>{{balance}}</span></a>
+        <a href="{% url 'logout_page' %}">Logout</a>
+    </div>
+{% endblock navBar %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+    <div class="page">
+        <div class="depositForm">
+            <section class="dLogo"><img src="/media/bitcoin.png" alt=""></section>
+            <section class="account">
+                <section>
+                    <div><span class="limBox">Payment Method</span></div>
+                </section>
+                <section class="d">
+                    <div><img src="/media/wallet.png" alt=""><span></span></div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>Wallet</td>
+                                <td><span>{{wallet.holder}}'s Wallet</span></td>
+                            </tr>
+                            <tr>
+                                <td>Balance</td>
+                                <td><span><a href="">{{balance}}</a></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <form class="convertBox" method="post">
+                    {% csrf_token %} 
+                    <div><span class="limBox">Limit per Deposit [5 BTC] </span></div>
+                    <div class="inBox"> 
+                        <div class="in">
+                            <input type="number" class="ghsIn" min="100">GHS
+                        </div>
+                        <div class="in">
+                            <input type="number" name='amount' class="btcIn" min="0.00001" max="5" step="0.00001">BTC
+                        </div>
+                    </div>
+                    <div><span class="limBox">Enter your pin</span></div>
+                    <div class="pinBox">
+                        <input name="pin1" type="text" maxlength="1" class="pin"> 
+                        <input name="pin2" type="text" maxlength="1" class="pin">  
+                        <input name="pin3" type="text" maxlength="1" class="pin">  
+                        <input name="pin4" type="text" maxlength="1" class="pin">  
+                    </div>
+                    <div class="mdHolder">
+                        <button>Make deposit</button>
+                    </div>
+                </form>
+            </section>
+        </div>    
+        <div class="confForm">
+            <section>
+                <div class="i"><span>You Are Buying</span></div>
+                <div class="kb"><span class="btcOut" id="k1"></span></div>
+                <div><span>GHS {{bitx}} per btc</span></div>
+            </section>
+            <section>
+                <div class="i">
+                   <span>Payment method</span>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>Deposit to</td>
+                            <td>{{wallet.holder}}'s Wallet</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section>
+                <div class="i"><span>Current Balance</span></div>
+                <div class="kb"><span id="k1">{{balance}}</span></div>
+                <div><span>Projected Balance</span></div>
+                <div class="kb"><span class="newBal" id="k1"></span></div>
+            </section>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+<script>
+    const ghsIn = document.querySelector('.ghsIn')
+    const btcIn = document.querySelector('.btcIn')
+    const btcOut = document.querySelector('.btcOut')
+    const newBal = document.querySelector('.newBal')
+    const pins = document.querySelectorAll('.pin')
+
+    ghsIn.oninput = ()=>{
+        btcIn.value = (ghsIn.value / '{{bitx}}').toFixed(4)
+        btcOut.innerText = ((ghsIn.value / '{{bitx}}').toFixed(4)) + ' ' + 'BTC'
+        var x = parseFloat((ghsIn.value / '{{bitx}}').toFixed(4))
+        newBal.innerText = (parseFloat('{{bal}}') + x).toFixed(4)
+    }
+    btcIn.oninput = ()=>{
+        ghsIn.value = (btcIn.value * '{{bitx}}').toFixed(0)
+        btcOut.innerText = btcIn.value
+        var x = parseFloat((ghsIn.value / '{{bitx}}').toFixed(4))
+        newBal.innerText = (parseFloat('{{bal}}') + x).toFixed(4)
+    }
+    for (let i = 0; i < pins.length; i++) {
+        pins[i].oninput = ()=>{
+            pins[i].value =  pins[i].value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+            if(i < 3){
+                pins[i+1].focus()
+            }
+        }
+    }
+</script>
+{% endblock script %}

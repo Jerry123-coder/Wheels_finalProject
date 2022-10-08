@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-family: 'Baloo 2', cursive;
+    text-decoration: none;
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    background-color: whitesmoke;
+}
+
+.navBar{
+    position: fixed;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: black;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    font-size: 1.1rem;
+}
+.navBar a{
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-right: 60px;
+    margin-left: 60px;
+}
+
+.page{
+    display: flex;
+    width: 100%;
+}
+.leftPage, .rightPage{
+    border: 1px solid black;
+    width: 50%;
+}
+.rightPage a{
+    color: #4facf1;
+    background: black;
+    padding: 5px;
+    font-size: 1.1rem;
+}
+.conBox{
+    position: absolute;
+    top: 100px;
+    right: 10px;
+}
+.conBox div{
+    margin-bottom: 8px;
+}
+.cO{
+    background-color: #4facf1;
+    color: white;
+    padding: 2px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+}
+.prodBoxII{
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.tLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prodBoxII div{
+    margin: 3px;
+}
+.prodBoxII section{
+    display: flex;
+    flex-direction: column;
+}
+.pbd,.pbdII,.pbdIII{
+    cursor: pointer;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background:#4facf1;
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+.pbd:hover{
+    background-color: #d96281;
+}
+.pbdII{
+    background-color: #4e4e51;
+    border-radius: 0;
+}
+.h{
+    background-color: #4e4e51;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    text-align: center;
+    color: white;
+    margin: 3px;
+}
+.eNum{
+    display: flex;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background: #e4ebf2;
+    border-radius: 3px;
+    padding: 10px;
+}
+.nav{
+    width: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    justify-content: flex-start;
+}
+.nav span{
+    background-color: #7d909f;
+    color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    margin: 2px;
+    padding: 3px;
+    width: 100%;
+    border-radius: 3px;
+}
+.nav span:hover{
+    background: #f199ae;
+}
+.nForm{
+    display: flex;
+}
+.nForm section{
+    align-items: center;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+}
+.wIn{
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    text-align: center;
+    font-size: 1.2rem;
+    padding:2px;
+    width: 100px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    -moz-appearance: textfield;
+  }
+.wIn::-webkit-outer-spin-button,
+.wIn::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+  }
+.wSelect{
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    border-radius: 3px;
+    background-color: white;
+    font-size: 1.1rem;
+    padding: 1px;
+}
+
+.errorBox{
+    position: absolute;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+.errorBox div{
+    margin-bottom: 9px;
+}
+.err{
+    box-shadow: -3px -3px 7px gainsboro, 3px 3px 5px rgba(94, 104, 121, .288);
+    color: white;
+    padding: 5px;
+    background-color: black;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.wLogo{
+    height: 40px;
+    width: 40px;
+}

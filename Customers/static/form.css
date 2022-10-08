@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-family: 'Baloo 2', cursive;
+    text-decoration: none;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+}
+.navBar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    opacity: 0.9;
+    width: 100%;
+    z-index: 1000;
+    height: 50px;
+    background-color: black;
+}
+.navBar a{
+    color: white;
+    margin: 60px;
+    font-size: 1.1rem;
+}
+
+
+.helptext{
+    display: none;
+}
+.errorlist{
+    background-color:#01acff;
+    list-style: none;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    width: 250px;
+}
+.errorlist li{
+    text-align: center;
+}
+.formBox{
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    background-color: #d9376f;
+    padding: 5px;
+    color: white;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+form{
+    font-size: 1.1rem;
+}
+.logForm{
+    color: black;
+    display: flex;
+    background-color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    padding: 10px;
+    justify-content: center;
+    flex-direction: column;
+}
+#id_username,#id_email,#id_password1,#id_password2,#id_password,#id_phone_number{
+    height: 30px;
+    width: 250px;
+    border: 1px solid gray;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    font-size: 1.1rem;
+    padding: 5px;
+}
+.username,.email,.password1,.password2,.location{
+    font-size: 1.1rem;
+    margin: 5px;
+    height: 30px;
+    width: 250px;
+    border: 1px solid gray;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    padding: 5px;    
+}
+.bHolder{
+margin-top: 10px;
+display: flex;
+justify-content: center;
+}
+.bHolder button{
+cursor:grabbing;
+background-color:#d9376f;
+box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 1.1rem;
+color: white;
+letter-spacing: 1px;
+padding: 5px;
+width: 120px;
+height: 30px;
+transition: 0.2s ease;
+}
+.bHolder button:hover{
+letter-spacing: 0.6px;
+background-color: transparent;
+color: #d9376f;
+border: 3px dashed #d9376f;
+}
+.formBox .redBox{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.formBox .redBox a{
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    background-color: #01acff;
+    text-align: center;
+    padding: 3px;
+    text-decoration: none;
+    color: whitesmoke;
+    transition: 0.2s ease;
+}
+.formBox .redBox a:hover{
+    background: transparent;
+    color: #01acff;
+    border: 3px dashed #01acff;
+}
+
+.codeBox{
+    position: fixed;
+    top: 50px;
+    left: 0;
+    background-color: #01acff;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 20px;
+    font-size: 1.1rem;
+    width: 30%;
+    border-bottom-right-radius: 5px;
+}
+#header{
+    color: black;
+}
+.cH{
+    margin: 5px;
+}
+.codeBox .con{
+    border-radius: 5px;
+    word-wrap: break-word;
+    padding: 8px;
+    border: 2px solid white;
+    transition: 0.3s ease;
+}
+.codeBox .con:hover{
+    background-color: white;
+    color: #00a1d3;
+    cursor: copy;
+}

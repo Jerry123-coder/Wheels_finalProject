@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-family: 'Baloo 2', cursive;
+    text-decoration: none;
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    background-color: whitesmoke;
+}
+.navBar{
+    position: fixed;
+    top: 20px;
+    background-color: white;
+    color: black;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    font-size: 1.1rem;
+}
+.navBar a{
+    color: black;
+    margin: 60px;
+    padding: 3px;
+}
+
+.codeBox{
+    position: fixed;
+    top: 20px;
+    left: -165px;
+    background-color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    display: flex;
+    flex-direction: column;
+    color: #d96281;
+    padding: 5px;
+    font-size: 1rem;
+    width: 10%;
+    transition: 0.3s ease;
+}
+.codeBox.hide{
+    left: 0;  
+}
+#header{
+    color: black;
+}
+.cH{
+    margin: 5px;
+}
+.bH{
+    display: flex;
+    justify-content: center;
+}
+.bH button{
+    width: 100px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    color: white;
+    font-weight: 700;
+    background: #d96281;
+}
+.gB{
+    display: flex;
+    justify-content: center;
+}
+.message{
+    position: fixed;
+    top: 100px;
+}
+.mess{
+    background-color: black;
+    color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    padding: 3px;
+}
+.gen{
+    background-color: #01acff;
+    padding: 3px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    color: white;
+}
+.orderLink{
+    background-color: #d96281;
+    color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    padding: 3px;
+}
+.show{
+    position: absolute;
+    top: 0;
+    right: -30px;
+    background-color: #d96281;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    color: white;
+    font-weight: 700;
+    height: 30px;
+    width: 30px;
+}
+.codeBox .con{
+    border-radius: 5px;
+    word-wrap: break-word;
+    padding: 8px;
+    border: 2px solid #d96281;
+    transition: 0.3s ease;
+}
+.codeBox .con:hover{
+    background-color: #d96281;
+    color: white;
+    cursor: copy;
+}
+
+table{
+    background-color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    margin: 3px;
+    padding: 10px;
+}
+th{
+    border-bottom: 2px solid #d96281;
+    font-weight: 200px;
+}
+td{
+    border: 1px solid darkgray;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+td:hover{
+    background-color: #d96281;
+    color: white;
+}
+.lb{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.dataBox{
+    display: flex;
+    align-items: center;
+}
+.miniBox div{
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+}
+
+
+.sLogo{
+    height: 20px;
+    width: 20px;
+}
+.page{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+}
+.depositForm{
+    background-color: white;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    color: black;
+    margin: 10px;
+}
+.limBox{
+    border-bottom: 2px solid #d96281;
+    margin: 10px;
+}
+.depositForm section{
+    text-align: center;
+    display: flex;
+}
+.account{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.account .d{
+    padding: 5px;
+    display: flex;
+    border-radius: 3px;
+    align-items: center;
+}
+.account .d div{
+    margin: 5px;
+}
+.account img{
+    height: 30px;
+    width: 30px;
+}
+.account span{
+    width: 200px;
+    word-wrap: break-word;
+}
+.dLogo{
+    padding: 5px;
+    border-radius: 3px;
+}
+.dLogo img{
+    height: 60px;
+    width: 60px;
+}
+.mdHolder{
+    padding: 10px;
+}
+.mdHolder button{
+    padding: 3px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background: #01acff;
+    color: white;
+    font-size: 1rem;
+}
+.confForm{
+    margin: 10px;
+    width: 40%;
+    display: flex;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    background-color: white;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.confForm section div span{
+    text-align: center;
+}
+.confForm section{
+    border-bottom: 2px solid #d96281;
+}
+
+.convertBox{
+    display: flex;
+    flex-direction: column;
+}
+.inBox{
+    display: flex;
+}
+.in{
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin: 5px;
+    padding: 5px;
+}
+.in input{
+    height: 50px;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 3px;
+    width: 80px;
+    color: #d96281;
+}
+
+.kb{
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+#k1{
+    text-align: center;
+    color: #d96281;
+    padding: 3px;
+    width: 100%;
+}
+.i{
+    display: flex;
+    justify-content: center;
+}
+
+.modalBox{
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.modalBox div{
+    padding: 5px;
+    margin: 5px;
+}
+.modalBox div span{
+    color: white;
+}
+.modalBox .b button{
+    padding: 7px;
+    font-size: 1rem;
+    background-color: skyblue;
+    border-radius: 3px;
+}
+.modalBox input, .pinBox input{
+    height: 40px;
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    -moz-appearance: textfield;
+}
+.pinBox{
+    padding: 10px;
+}
+.pinBox input{
+    width: 30px;
+    height: 30px;
+    border: 1px solid gray;
+}
+.modalBox input::-webkit-outer-spin-button,
+.modalBox input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+  }
+.modalBox section{
+    background-color: aliceblue;
+    margin-bottom: 10px;
+}  
+.modalBox section span{
+    padding: 7px;
+}
+.err1,.err2{
+    display: none;
+}

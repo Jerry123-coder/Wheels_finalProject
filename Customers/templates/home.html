@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'basic.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <section class="pageTag">
+        <a href="/" class="tag">Wheels Inc.</a>
+      </section>
+      <section class="page">
+        <div class="imgBox">
+            <img src="/media/wheels icon.png" alt="">
+        </div>
+        <div class="aBox">
+          <a class="anc" href="{% url 'login_page' %}">Customer <div class="iBox"><img class="icon" src="/media/kg.png"></div></a>
+          <a class="anc" href="{% url 'ownerLogin_page' %}">Owner <div class="iBox"><img class="icon" src="/media/truckw.png"></div></a>
+        </div>
+      </section>
+    <script>
+        const anc = document.querySelectorAll('.anc')
+        const iBox = document.querySelectorAll('.iBox')
+        
+        for (let i = 0; i < anc.length; i++) {
+            anc[i].onmouseover = ()=>{
+                iBox[i].style.top = '52px'
+                iBox[i].style.opacity = '1'
+            }
+            anc[i].onmouseleave = ()=>{
+                iBox[i].style.top = '40px'
+                iBox[i].style.opacity = '0'
+            }
+        }
+    </script>
+</body>
+</html>

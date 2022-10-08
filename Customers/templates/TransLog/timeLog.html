@@ -1,0 +1,76 @@
+{% extends 'wallet.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'wallet.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block navBar %}
+    <div class="navBar">
+        <a href="{% url 'wheels_page' %}" class="user">{{user.username}}</a>
+        <a><span></span><span>{{balance}}</span></a>
+        <a href="{% url 'logout_page' %}">Logout</a>
+    </div>
+{% endblock navBar %}
+
+{% block content %}
+    <div class="codeBox">
+        <form method="post">
+            {% csrf_token %}
+            <button class="gen">generate key</button>
+        </form>
+        <div class='cH'>
+            <p id='header'>Private_key</p>
+            <div class='con' id='pkTab'>{{wallet.private_key}}</div>
+        </div>
+        <div class='cH'>
+            <p id='header'>Public_key</p>
+            <div class='con'>{{wallet.public_key}}</div>
+        </div>
+        <div class='cH'>
+            <p id='header'>Wallet Address</p>
+            <div class='con'>{{wallet.address}}</div>
+        </div>
+        <div class="bH">
+            <button class="hide">X</button>
+        </div>
+        <button class="show">+</button>
+    </div>
+
+    <div class="dataBox">
+        <table>
+            <tr>
+                <th>Container</th>
+                <th>Order Trip</th>
+                <th>Distance Km</th>
+                <th>Delivery Time</th>
+                <th>Amount BTC</th>
+                <th>Time Ordered</th>
+                <th>Trans Type</th>
+            </tr>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{transaction.container}}</td>
+                <td><span>{{transaction.pickup}} --> {{transaction.dropoff}}</span></td>
+                <td>{{transaction.trip_distance}}</td>
+                <td>{{transaction.delivery_duration}}</td>
+                <td class='amnt'>{{transaction.amount_BTC}}</td>
+                <td>{{transaction.timestamp}}</td>
+                <td class="lb">sent <img src="/media/right-arrow.png" class="sLogo"></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td class="aTab" colspan="2">
+                </td>
+            </tr>
+        </table>
+        <div class="miniBox">
+            <div>
+                <a href="{% url 'wallet_page' %}">Summary</a>
+                <a href="{% url 'driverLog_page' %}">Driver Log</a>
+                <a href="{% url 'agentLog_page' %}">Agent Log</a>
+                <a href="{% url 'timeLog_page' %}">Time Log</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
